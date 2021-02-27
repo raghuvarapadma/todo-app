@@ -50,13 +50,18 @@ const App = () => {
     console.log(tasks);
   };
 
-  // const editTask = () => {
+  const editTask = (name) => {
+    // console.log("edit");
+    // console.log(name);
+    let index = tasks.findIndex(el=>el===name);
+    tasks[index] = currTask;
+    console.log(index);
+  }
 
-  // }
-
-  // const deleteTask = () => {
-    
-  // }
+  const deleteTask = (name) => {
+    setTasks(tasks.filter((el) => el !== name));
+    console.log(tasks);
+  }
 
   return (
     <div className="home">
@@ -75,12 +80,12 @@ const App = () => {
                * 1. onClick (function) -> pass one of the functions above that handles a task being added
                * 2. Add text between the open and closing button tags, describing what the button should say
                */}
-              <Button onClick={addTask}>Enter!</Button>
+              <Button onClick={addTask} onChange={handleInput}>Enter!</Button>
             </InputGroup.Append>
           </Form.Group>
         </Form>
         {/*using your tasks array, map through it and pass each task string to the Task component via the name prop*/}
-        {tasks.map((task) => {return (<Task name={task}></Task>)})}
+        {tasks.map((task, idx) => {return (<Task name={task} onEdit={editTask} onDelete={deleteTask} key={idx}></Task>)})}
       </div>
     </div>
   );
