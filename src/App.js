@@ -45,7 +45,8 @@ const App = () => {
    *          const new_array = [...old_array, "wow"] (we're adding the string "wow")
    *          console.log(new_array) -> ["hi", "bye", "wow"]
    */
-  const addTask = () => {
+  const addTask = (e) => {
+    e.preventDefault();
     setTasks([...tasks, currTask]);
     console.log(tasks);
   };
@@ -80,7 +81,7 @@ const App = () => {
                * 1. onClick (function) -> pass one of the functions above that handles a task being added
                * 2. Add text between the open and closing button tags, describing what the button should say
                */}
-              <Button onClick={addTask} onChange={handleInput}>Enter!</Button>
+              <Button onClick={addTask} type={"submit"}>Enter!</Button>
             </InputGroup.Append>
           </Form.Group>
         </Form>
